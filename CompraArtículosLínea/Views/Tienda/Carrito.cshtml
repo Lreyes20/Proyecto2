@@ -1,0 +1,55 @@
+﻿@model List<CompraArtículosLínea.Models.DetallePedido>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="container mt-5">
+    <h2>Carrito de Compras</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Producto.Nombre</td>
+                    <td>@item.Cantidad</td>
+                    <td>₡@item.Producto.Precio.ToString("N2")</td>
+                    <td>₡@item.Subtotal.ToString("N2")</td>
+                    <td>
+                        <form asp-action="EliminarDelCarrito" method="post">
+                            <input type="hidden" name="productoId" value="@item.ProductoId" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Mostrar Total -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="d-flex justify-content-end">
+            <h4>Total: ₡@Model.Sum(i => i.Subtotal).ToString("N2")</h4>
+        </div>
+    }
+    else
+    {
+        <div class="text-center mt-4">
+            <h4>El carrito está vacío.</h4>
+        </div>
+    }
+
+    <!-- Botón de Pagar -->
+    <div class="d-flex justify-content-end mt-3">
+        <a href="@Url.Action("Pago", "Tienda")" class="btn btn-success">Pagar</a>
+    </div>
+</div>

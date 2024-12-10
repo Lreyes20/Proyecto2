@@ -1,0 +1,73 @@
+﻿@model CompraArtículosLínea.Models.Usuario
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema de Reservas</title>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+   
+</head>
+<body>
+    <section class="register-form">
+        <h2>¡Únete a nosotros!</h2>
+        <form asp-action="Registro" asp-controller="Cuenta" method="post">
+            <div class="form-group">
+                <label asp-for="NombreUsuario"></label>
+                <input asp-for="NombreUsuario" class="form-control" placeholder="Ingrese su nombre de usuario" />
+                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre"></label>
+                <input asp-for="Nombre" class="form-control" placeholder="Ingrese su nombre completo" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" placeholder="Ingrese su correo electrónico" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion"></label>
+                <input asp-for="Direccion" class="form-control" placeholder="Ingrese su dirección" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono"></label>
+                <input asp-for="Telefono" class="form-control" placeholder="Ingrese su teléfono" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contrasena"></label>
+                <input asp-for="Contrasena" type="password" class="form-control" placeholder="Ingrese su contraseña" />
+                <span asp-validation-for="Contrasena" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn">Registrarse</button>
+            <p>¿Ya tienes una cuenta? <a href="@Url.Action("Login", "Cuenta")">Iniciar sesión</a></p>
+        </form>
+    </section>
+    <!-- Script de SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+    <!-- Mostrar mensaje de error -->
+    <script>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <text>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error en el registro',
+                    text: '@TempData["ErrorMessage"]',
+                    confirmButtonText: 'Aceptar'
+                });
+            </text>
+        }
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CompraArtículosLínea.Models.Pedido>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Historial de Pedidos</h2>
+
+@if (!Model.Any())
+{
+    <p>No tienes pedidos registrados.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Precio Total</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.PedidoId</td>
+                    <td>@pedido.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@pedido.Estado</td>
+                    <td>₡@pedido.PrecioTotal.ToString("N2")</td>
+                    <td>
+                        <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#detalles-@pedido.PedidoId" aria-expanded="false" aria-controls="detalles-@pedido.PedidoId">
+                            Ver Productos
+                        </button>
+                    </td>
+                </tr>
+                <tr class="collapse" id="detalles-@pedido.PedidoId">
+                    <td colspan="5">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Descripción</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var detalle in pedido.DetallePedidos)
+                                {
+                                    <tr>
+                                        <td>@detalle.Producto.Nombre</td>
+                                        <td>@detalle.Producto.Descripcion</td>
+                                        <td>@detalle.Cantidad</td>
+                                        <td>₡@detalle.Producto.Precio.ToString("N2")</td>
+                                        <td>₡@detalle.Subtotal.ToString("N2")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

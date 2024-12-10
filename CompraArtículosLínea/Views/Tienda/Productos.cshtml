@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CompraArtículosLínea.Models.Producto>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<!-- Estilos específicos -->
+<style>
+    /* Contenedor de las tarjetas */
+    .product-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        text-align: center;
+        height: 100%; /* Asegura que las tarjetas sean del mismo tamaño */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Imagen del producto */
+    .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: contain; /* Mantiene proporción sin recortar */
+        background-color: #f9f9f9; /* Fondo para imágenes pequeñas */
+    }
+
+    /* Contenedor de texto */
+    .card-body {
+        padding: 15px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Botón de agregar */
+    .btn-primary {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /* Ajuste del contenedor general */
+    .row {
+        row-gap: 20px;
+    }
+
+    /* Espaciado del pie de página */
+    .container {
+        margin-bottom: 50px;
+    }
+</style>
+
+<h1>Productos</h1>
+<div class="container mt-4">
+    <div class="row">
+        @foreach (var producto in Model)
+        {
+            <div class="col-md-3">
+                <div class="product-card">
+                    <!-- Imagen del producto -->
+                    <img src="~/img/@($"{producto.ProductoId}.jpg")"
+                         class="card-img-top"
+                         alt="@producto.Nombre"
+                         onerror="this.onerror=null; this.src='~/img/@($"{producto.ProductoId}.jpg")'; if (!this.complete) this.src='~/img/default.png'" />
+                    <!-- Información del producto -->
+                    <div class="card-body">
+                        <h5 class="card-title">@producto.Nombre</h5>
+                        <p class="card-text">@producto.Descripcion</p>
+                        <p class="card-text text-success">₡@producto.Precio.ToString("N2")</p>
+                        <form asp-action="AgregarAlCarrito" asp-controller="Tienda" method="post">
+                            <input type="hidden" name="productoId" value="@producto.ProductoId" />
+                            <input type="hidden" name="cantidad" value="1" />
+                            <button type="submit" class="btn btn-primary">Agregar al Carrito</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model CompraArtículosLínea.Models.Usuario
+
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en Línea - Inicia sesión</title>
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <h2 class="text-center">Iniciar sesión</h2>
+
+            <!-- Mostrar mensajes de TempData -->
+            @if (TempData["Mensaje"] != null)
+            {
+                <div class="alert alert-info text-center">@TempData["Mensaje"]</div>
+            }
+
+            <!-- Mostrar errores del ModelState -->
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <form asp-action="Login" method="post">
+                <div class="form-group">
+                    <input type="tel" name="NombreUsuario" class="form-control" placeholder="Nombre de Usuario" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="contraseña" class="form-control" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                <p class="text-center"><a href="#">¿Olvidaste tu contraseña?</a></p>
+                <p class="text-center">
+                    ¿Aún no tienes una cuenta? <a asp-action="Registro" asp-controller="Cuenta">Regístrate aquí.</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

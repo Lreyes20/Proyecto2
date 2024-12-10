@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+
+    <!-- Favicon -->
+    
+
+
+    <!-- Boxicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    
+
+    <!-- Main -->
+    <main class="main">
+        <!-- Carrusel de Inicio -->
+        <section class="inicio">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="inicio__contenedor">
+                            <h3 class="inicio__subtitulo">NUEVO EN</h3>
+                            <h1 class="inicio__titulo">Spectre Needles <br> DC Shoes</h1>
+                            <a href="@Url.Action("Login", "Cuenta")" class="inicio__boton">
+                                Comprar <i class='bx bx-right-arrow-alt'></i>
+                            </a>
+                            <div class="inicio__imag">
+                                <div class="inicio__circulo" style="background-color: #8e44ad;"></div>
+                                <img src="/img/Z1.png" alt="Spectre Needles" class="inicio__img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="inicio__contenedor">
+                            <h3 class="inicio__subtitulo">NUEVO EN</h3>
+                            <h1 class="inicio__titulo">Manteca 4 HI <br> DC Shoes</h1>
+                            <a href="@Url.Action("Login", "Cuenta")" class="inicio__boton">
+                                Comprar <i class='bx bx-right-arrow-alt'></i>
+                            </a>
+                            <div class="inicio__imag">
+                                <div class="inicio__circulo" style="background-color: #7f8c8d;"></div>
+                                <img src="/img/Z2.png" alt="Manteca 4 HI" class="inicio__img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="inicio__contenedor">
+                            <h3 class="inicio__subtitulo">NUEVO EN</h3>
+                            <h1 class="inicio__titulo">Court Graffik SE <br> DC Shoes</h1>
+                            <a href="@Url.Action("Login", "Cuenta")" class="inicio__boton">
+                                Comprar <i class='bx bx-right-arrow-alt'></i>
+                            </a>
+                            <div class="inicio__imag">
+                                <div class="inicio__circulo" style="background-color: #3498db;"></div>
+                                <img src="/img/Z3.png" alt="Court Graffik SE" class="inicio__img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Paginación -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Swiper JS -->
+    <script src="/js/swiper-bundle.min.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

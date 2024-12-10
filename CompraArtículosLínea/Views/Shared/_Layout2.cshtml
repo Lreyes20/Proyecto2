@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UrbanKick</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column min-vh-100 sb-nav-fixed">
+    <!-- Navbar -->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand -->
+        <a class="navbar-brand ps-3" href="@Url.Action("Index", "Home")">UrbanKick</a>
+
+        <!-- Sidebar Toggle -->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Navbar Search -->
+        <form method="get" action="@Url.Action("Productos", "Tienda")" class="d-flex ms-auto me-3">
+            <input type="text" name="searchQuery" class="form-control me-2" placeholder="Buscar productos..." />
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+
+        <!-- Navbar User Menu -->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user fa-fw"></i>
+                    @if (Context.Session.GetString("UsuarioLogueado") != null)
+                    {
+                        @Context.Session.GetString("UsuarioLogueado")
+                    }
+                    else
+                    {
+                        @:Invitado
+                    }
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="@Url.Action("MiPerfil", "Cuenta")">Mi Perfil</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Historial", "Pedidos")">Historial de Pedidos</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Logout", "Cuenta")">Cerrar Sesión</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Carrito", "Tienda")">
+                    <i class="fas fa-shopping-cart"></i>
+                    Carrito (<span id="cartCount">@Context.Session.GetInt32("CartCount") </span>)
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <!-- Sidebar and Main Content -->
+    <div id="layoutSidenav" class="d-flex flex-grow-1">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Navegación</div>
+                        <a class="nav-link" href="@Url.Action("Dashboard", "Cuenta")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                            Inicio
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Productos", "Tienda")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-shoe-prints"></i></div>
+                            Productos
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Promociones", "Tienda")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+                            Promociones
+                        </a>
+
+                        <a class="nav-link" href="@Url.Action("Marcas", "Tienda")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-star"></i></div>
+                            Marcas
+                        </a>
+
+                        <a class="nav-link" href="@Url.Action("LoNuevo", "Tienda")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-fire"></i></div>
+                            Lo Nuevo
+                        </a>
+
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Usuario actual:</div>
+                    @if (Context.Session.GetString("UsuarioLogueado") != null)
+                    {
+                        @Context.Session.GetString("UsuarioLogueado")
+                    }
+                    else
+                    {
+                        @:Invitado
+                    }
+
+                </div>
+            </nav>
+        </div>
+
+        <div id="layoutSidenav_content" class="flex-grow-1">
+            <main>
+                <div class="container-fluid px-4">
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
+    </div>
+    <br>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2024 UrbanKick. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/scripts.js" asp-append-version="true"></script>
+</body>
+</html>

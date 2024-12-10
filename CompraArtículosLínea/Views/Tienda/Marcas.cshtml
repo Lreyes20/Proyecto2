@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Marcas</h1>
+<p>Bienvenido a la sección de marcas. Aquí encontrarás las marcas disponibles en nuestra tienda.</p>
+
+<!-- Contenedor principal -->
+<div class="container mt-4">
+    <div class="row">
+        <!-- Tarjeta de Nike -->
+        <div class="col-md-4">
+            <div class="card brand-card">
+                <img src="~/img/Logo1.jpg" class="brand-image" alt="Nike" />
+                <div class="card-body">
+                    <h5 class="card-title">Nike</h5>
+                    <p class="card-text">Explora productos de Nike.</p>
+                    <a href="@Url.Action("Productos", "Tienda", new { searchQuery = "Nike" })" class="btn btn-primary">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Adidas -->
+        <div class="col-md-4">
+            <div class="card brand-card">
+                <img src="~/img/Logo2.png" class="brand-image" alt="Adidas" />
+                <div class="card-body">
+                    <h5 class="card-title">Adidas</h5>
+                    <p class="card-text">Explora productos de Adidas.</p>
+                    <a href="@Url.Action("Productos", "Tienda", new { searchQuery = "Adidas" })" class="btn btn-primary">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Puma -->
+        <div class="col-md-4">
+            <div class="card brand-card">
+                <img src="~/img/Logo3.jpg" class="brand-image" alt="Puma" />
+                <div class="card-body">
+                    <h5 class="card-title">Puma</h5>
+                    <p class="card-text">Explora productos de Puma.</p>
+                    <a href="@Url.Action("Productos", "Tienda", new { searchQuery = "Puma" })" class="btn btn-primary">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estilos específicos -->
+<style>
+    /* Contenedor de las tarjetas */
+    .brand-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+
+    /* Imagen de la marca */
+    .brand-image {
+        width: 100%;
+        height: 200px;
+        object-fit: contain; /* Mantiene proporciones */
+        background-color: #f9f9f9; /* Fondo para imágenes pequeñas */
+    }
+
+    /* Contenedor de texto */
+    .card-body {
+        padding: 15px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Botón de agregar */
+    .btn-primary {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /* Espaciado de las filas */
+    .row {
+        row-gap: 20px;
+    }
+
+    /* Margen inferior del contenedor */
+    .container {
+        margin-bottom: 50px;
+    }
+</style>
